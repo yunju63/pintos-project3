@@ -1,0 +1,36 @@
+Copying tests/filesys/base/sm-seq-block into /tmp/3KrcH8hiiZ.dsk...
+Writing command line to /tmp/jFoUldAHDN.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put sm-seq-block run sm-seq-block
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'sm-seq-block' into the file system...
+Executing 'sm-seq-block':
+(sm-seq-block) begin
+(sm-seq-block) create "noodle"
+(sm-seq-block) open "noodle"
+(sm-seq-block) writing "noodle"
+(sm-seq-block) close "noodle"
+(sm-seq-block) open "noodle" for verification
+(sm-seq-block) verified contents of "noodle"
+(sm-seq-block) close "noodle"
+(sm-seq-block) end
+sm-seq-block: exit(0)
+Execution of 'sm-seq-block' complete.
+Timer: 358 ticks
+Thread: 0 idle ticks, 227 kernel ticks, 138 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 124 reads, 263 writes
+hd1:0: 108 reads, 0 writes
+Console: 1074 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

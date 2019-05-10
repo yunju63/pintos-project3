@@ -1,0 +1,33 @@
+Copying tests/filesys/base/sm-create into /tmp/VZSqltXdSQ.dsk...
+Writing command line to /tmp/5udgvVPqil.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put sm-create run sm-create
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'sm-create' into the file system...
+Executing 'sm-create':
+(sm-create) begin
+(sm-create) create "blargle"
+(sm-create) open "blargle" for verification
+(sm-create) verified contents of "blargle"
+(sm-create) close "blargle"
+(sm-create) end
+sm-create: exit(0)
+Execution of 'sm-create' complete.
+Timer: 304 ticks
+Thread: 0 idle ticks, 223 kernel ticks, 88 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 98 reads, 238 writes
+hd1:0: 107 reads, 0 writes
+Console: 949 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

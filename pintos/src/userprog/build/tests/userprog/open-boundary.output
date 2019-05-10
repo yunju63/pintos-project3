@@ -1,0 +1,32 @@
+Copying tests/userprog/open-boundary into /tmp/jJfZeN0rXm.dsk...
+Copying ../../tests/userprog/sample.txt into /tmp/jJfZeN0rXm.dsk...
+Writing command line to /tmp/32O4VBIEfV.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put open-boundary put sample.txt run open-boundary
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'open-boundary' into the file system...
+Putting 'sample.txt' into the file system...
+Executing 'open-boundary':
+(open-boundary) begin
+(open-boundary) open "sample.txt"
+(open-boundary) end
+open-boundary: exit(0)
+Execution of 'open-boundary' complete.
+Timer: 292 ticks
+Thread: 0 idle ticks, 248 kernel ticks, 51 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 90 reads, 226 writes
+hd1:0: 108 reads, 0 writes
+Console: 931 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

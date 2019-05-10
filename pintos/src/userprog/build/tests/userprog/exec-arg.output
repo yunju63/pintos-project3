@@ -1,0 +1,38 @@
+Copying tests/userprog/exec-arg into /tmp/jZwfrareI6.dsk...
+Copying tests/userprog/child-args into /tmp/jZwfrareI6.dsk...
+Writing command line to /tmp/YlF4hff6GM.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put exec-arg put child-args run exec-arg
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'exec-arg' into the file system...
+Putting 'child-args' into the file system...
+Executing 'exec-arg':
+(exec-arg) begin
+(args) begin
+(args) argc = 2
+(args) argv[0] = 'child-args'
+(args) argv[1] = 'childarg'
+(args) argv[2] = null
+(args) end
+child-args: exit(0)
+(exec-arg) end
+exec-arg: exit(0)
+Execution of 'exec-arg' complete.
+Timer: 395 ticks
+Thread: 0 idle ticks, 319 kernel ticks, 87 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 119 reads, 422 writes
+hd1:0: 206 reads, 0 writes
+Console: 998 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

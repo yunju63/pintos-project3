@@ -1,0 +1,35 @@
+Writing command line to /tmp/kfalPWeigs.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q run priority-donate-multiple
+Pintos booting with 4,096 kB RAM...
+375 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+Boot complete.
+Executing 'priority-donate-multiple':
+(priority-donate-multiple) begin
+(priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
+(priority-donate-multiple) Main thread should have priority 33.  Actual priority: 31.
+(priority-donate-multiple) Thread b should have just finished.
+(priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
+(priority-donate-multiple) Thread a should have just finished.
+(priority-donate-multiple) Main thread should have priority 31.  Actual priority: 31.
+(priority-donate-multiple) end
+Execution of 'priority-donate-multiple' complete.
+Timer: 102 ticks
+Thread: 0 idle ticks, 105 kernel ticks, 0 user ticks
+Console: 905 characters output
+(priority-donate-multiple) Thread a acquired lock a.
+Kernel PANIC at ../../threads/synch.c:234 in lock_release(): assertion `lock_held_by_current_thread (lock)' failed.
+Call stack: 0xc0116fa0Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0105302
+ cr2=000000ea error=00000000
+ eax=000000ea ebx=000000ea ecx=c0116ecc edx=000003d4
+ esi=c010bad4 edi=c010ce02 esp=c010d453 ebp=c0116f60
+ cs=0008 ds=0010 es=0010 ss=6fa0
+Kernel PANIC recursion at ../../threads/interrupt.c:373 in intr_handler().
+Timer: 123 ticks
+Thread: 0 idle ticks, 123 kernel ticks, 0 user ticks
+Console: 1500 characters output
+Keyboard: 0 keys pressed
+Powering off...

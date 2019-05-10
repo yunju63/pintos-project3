@@ -1,0 +1,29 @@
+Copying tests/userprog/read-stdout into /tmp/HZDW6M0fJa.dsk...
+Writing command line to /tmp/qSjOPSZTpD.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put read-stdout run read-stdout
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'read-stdout' into the file system...
+Executing 'read-stdout':
+(read-stdout) begin
+(read-stdout) end
+read-stdout: exit(0)
+Execution of 'read-stdout' complete.
+Timer: 251 ticks
+Thread: 0 idle ticks, 223 kernel ticks, 35 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 59 reads, 216 writes
+hd1:0: 104 reads, 0 writes
+Console: 821 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

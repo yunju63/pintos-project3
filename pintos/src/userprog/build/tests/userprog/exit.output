@@ -1,0 +1,28 @@
+Copying tests/userprog/exit into /tmp/hOx5irxZiy.dsk...
+Writing command line to /tmp/sTqqSTtYdT.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put exit run exit
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'exit' into the file system...
+Executing 'exit':
+(exit) begin
+exit: exit(57)
+Execution of 'exit' complete.
+Timer: 241 ticks
+Thread: 0 idle ticks, 220 kernel ticks, 28 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 59 reads, 214 writes
+hd1:0: 103 reads, 0 writes
+Console: 755 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

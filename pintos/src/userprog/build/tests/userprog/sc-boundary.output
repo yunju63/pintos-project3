@@ -1,0 +1,28 @@
+Copying tests/userprog/sc-boundary into /tmp/ergVSpFng6.dsk...
+Writing command line to /tmp/Mp2R60DB2A.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put sc-boundary run sc-boundary
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'sc-boundary' into the file system...
+Executing 'sc-boundary':
+(sc-boundary) begin
+sc-boundary: exit(42)
+Execution of 'sc-boundary' complete.
+Timer: 252 ticks
+Thread: 0 idle ticks, 223 kernel ticks, 36 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 59 reads, 220 writes
+hd1:0: 106 reads, 0 writes
+Console: 804 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

@@ -4,6 +4,8 @@
 #include "userprog/gdt.h"
 #include "threads/interrupt.h"
 #include "threads/thread.h"
+#include "vm/page.h"
+#include "threads/vaddr.h"
 
 /* Number of page faults processed. */
 static long long page_fault_cnt;
@@ -89,7 +91,7 @@ kill (struct intr_frame *f)
       printf ("%s: dying due to interrupt %#04x (%s).\n",
               thread_name (), f->vec_no, intr_name (f->vec_no));
       intr_dump_frame (f);
-      thread_exit (); 
+      thread_exit();
 
     case SEL_KCSEG:
       /* Kernel's code segment, which indicates a kernel bug.
@@ -127,6 +129,9 @@ page_fault (struct intr_frame *f)
   bool user;         /* True: access by user, false: access by kernel. */
   void *fault_addr;  /* Fault address. */
 
+  struct spte *spte1;
+  bool load_flag = false; /* true on lazy loading, swap-in, stack growth */
+
   /* Obtain faulting address, the virtual address that was
      accessed to cause the fault.  It may point to code or to
      data.  It is not necessarily the address of the instruction
@@ -147,15 +152,33 @@ page_fault (struct intr_frame *f)
   not_present = (f->error_code & PF_P) == 0;
   write = (f->error_code & PF_W) != 0;
   user = (f->error_code & PF_U) != 0;
+  
+  if(not_present && is_user_vaddr(fault_addr) && fault_addr > (void *) 0x08048000){
+    if((spte1 = find_spte(fault_addr)) != NULL){
+      spte1->accessing = true;
+      /* load from executable or mmaped file */
+      if(spte1->on_type == 1)
+        load_flag = load_from_file(spte1);
+      /* swap in */
+      if(spte1->on_type == 2)
+        load_flag = load_from_swap_disk(spte1);
+      spte1->accessing = false;
+    }
+    /* stack growth */
+    else if(fault_addr >= f->esp - 32)
+      load_flag = stack_grow(fault_addr);
+  }
 
   /* To implement virtual memory, delete the rest of the function
-     body, and replace it with code that brings in the page to
-     which fault_addr refers. */
-  printf ("Page fault at %p: %s error %s page in %s context.\n",
-          fault_addr,
-          not_present ? "not present" : "rights violation",
-          write ? "writing" : "reading",
-          user ? "user" : "kernel");
-  kill (f);
+  body, and replace it with code that brings in the page to
+  which fault_addr refers. */
+  if(!load_flag){
+    printf ("Page fault at %p: %s error %s page in %s context.\n",
+        fault_addr,
+        not_present ? "not present" : "rights violation",
+        write ? "writing" : "reading",
+        user ? "user" : "kernel");
+    kill (f);
+  }
 }
 

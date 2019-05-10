@@ -1,0 +1,14 @@
+Prototype mismatch: sub main::SIGVTALRM () vs none at /home/20140461/pintos/src/utils/pintos line 874.
+Constant subroutine SIGVTALRM redefined at /home/20140461/pintos/src/utils/pintos line 866.
+========================================================================
+                       Bochs x86 Emulator 2.2.6
+              Build from CVS snapshot on January 29, 2006
+========================================================================
+00000000000i[     ] reading configuration from bochsrc.txt
+00000000000i[     ] installing nogui module as the Bochs GUI
+00000000000i[     ] using log file bochsout.txt
+Use of uninitialized value in numeric le (<=) at /home/20140461/pintos/src/utils/pintos line 769.
+========================================================================
+Bochs is exiting with the following message:
+[     ] SIGNAL 2 caught
+========================================================================

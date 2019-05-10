@@ -1,0 +1,33 @@
+Copying tests/filesys/base/lg-create into /tmp/rcpaBOxXN6.dsk...
+Writing command line to /tmp/7rH69e6h97.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put lg-create run lg-create
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'lg-create' into the file system...
+Executing 'lg-create':
+(lg-create) begin
+(lg-create) create "blargle"
+(lg-create) open "blargle" for verification
+(lg-create) verified contents of "blargle"
+(lg-create) close "blargle"
+(lg-create) end
+lg-create: exit(0)
+Execution of 'lg-create' complete.
+Timer: 436 ticks
+Thread: 0 idle ticks, 224 kernel ticks, 219 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 234 reads, 374 writes
+hd1:0: 107 reads, 0 writes
+Console: 951 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

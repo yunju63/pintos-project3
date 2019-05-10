@@ -4,6 +4,8 @@
 #include <debug.h>
 #include <list.h>
 #include <stdint.h>
+#include <hash.h>
+#include "synch.h"
 
 /* States in a thread's life cycle. */
 enum thread_status
@@ -17,6 +19,8 @@ enum thread_status
 /* Thread identifier type.
    You can redefine this to whatever type you like. */
 typedef int tid_t;
+typedef int pid_t;
+typedef int mapid_t;
 #define TID_ERROR ((tid_t) -1)          /* Error value for tid_t. */
 
 /* Thread priorities. */
@@ -99,7 +103,52 @@ struct thread
 
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
+
+    pid_t pid;
+    struct thread * parent;
+    int exit_status;
+    int fd_count;
+    int child_load_success;
+    struct list fd_list;
+    struct list child_list;
+    struct semaphore child_lock;
+    struct list_elem all_elem;
+    struct file* executable;
+    int waiting_tid;
+
+    /* proj3 */
+    struct hash spt;  //supplimental page table
+    struct list md_list;
+    mapid_t md_count;
   };
+
+/* this structure has member e: elements of md_list */
+struct md_elem
+  {
+    mapid_t mapping;
+    void * addr;
+    int num_of_pages;
+    struct list_elem e;
+  };
+
+/* this structure has member e: elements of fd_list */
+struct fd_elem
+  {
+    int fd;
+    struct file* f;
+    struct list_elem e;
+  };
+
+/* this structure has member e: elements of child_list */
+struct child_elem
+  {
+    struct thread * child;
+    struct list_elem e;
+    tid_t tid;
+    int exit_status;
+  };
+
+struct lock filesys_lock;
 
 /* If false (default), use round-robin scheduler.
    If true, use multi-level feedback queue scheduler.
@@ -133,4 +182,5 @@ void thread_set_nice (int);
 int thread_get_recent_cpu (void);
 int thread_get_load_avg (void);
 
+struct thread* get_thread(tid_t);
 #endif /* threads/thread.h */

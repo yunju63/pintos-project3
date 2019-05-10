@@ -1,0 +1,32 @@
+Copying tests/userprog/read-boundary into /tmp/oM_jX9Ko3X.dsk...
+Copying ../../tests/userprog/sample.txt into /tmp/oM_jX9Ko3X.dsk...
+Writing command line to /tmp/42Q7ReSSXO.dsk...
+warning: can't find squish-pty, so terminal input will fail
+bochs -q
+Kernel command line: -q -f put read-boundary put sample.txt run read-boundary
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Putting 'read-boundary' into the file system...
+Putting 'sample.txt' into the file system...
+Executing 'read-boundary':
+(read-boundary) begin
+(read-boundary) open "sample.txt"
+(read-boundary) end
+read-boundary: exit(0)
+Execution of 'read-boundary' complete.
+Timer: 293 ticks
+Thread: 0 idle ticks, 248 kernel ticks, 52 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 99 reads, 230 writes
+hd1:0: 110 reads, 0 writes
+Console: 931 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

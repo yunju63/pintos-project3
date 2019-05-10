@@ -1,0 +1,44 @@
+00000000000i[     ] Bochs x86 Emulator 2.2.6
+00000000000i[     ]   Build from CVS snapshot on January 29, 2006
+00000000000i[     ] System configuration
+00000000000i[     ]   processors: 1
+00000000000i[     ]   A20 line support: yes
+00000000000i[     ]   APIC support: no
+00000000000i[     ] CPU configuration
+00000000000i[     ]   level: 5
+00000000000i[     ]   fpu support: yes
+00000000000i[     ]   paging support: yes, tlb enabled: yes
+00000000000i[     ]   mmx support: yes
+00000000000i[     ]   sse support: no
+00000000000i[     ]   v8086 mode support: yes
+00000000000i[     ]   VME support: yes
+00000000000i[     ]   3dnow! support: no
+00000000000i[     ]   PAE support: no
+00000000000i[     ]   PGE support: no
+00000000000i[     ]   PSE support: yes
+00000000000i[     ]   x86-64 support: no
+00000000000i[     ]   SEP support: no
+00000000000i[     ] Optimization configuration
+00000000000i[     ]   Guest2HostTLB support: no
+00000000000i[     ]   RepeatSpeedups support: no
+00000000000i[     ]   Icache support: no
+00000000000i[     ]   Host Asm support: yes
+00000000000i[     ]   Fast function calls: no
+00000000000i[     ] Devices configuration
+00000000000i[     ]   NE2000 support: no
+00000000000i[     ]   PCI support: no
+00000000000i[     ]   SB16 support: no
+00000000000i[     ]   USB support: no
+00000000000i[     ]   VGA extension support:  
+00000000000i[MEM0 ] allocated memory at 0x7f55be220010. after alignment, vector=0x7f55be221000
+00000000000i[MEM0 ] 4.00MB
+00000000000i[MEM0 ] rom at 0xf0000/65536 ('/usr/local/share/bochs/BIOS-bochs-latest')
+00000000000i[MEM0 ] rom at 0xc0000/32768 ('/usr/local/share/bochs/VGABIOS-lgpl-latest')
+00000000000i[CMOS ] Using specified time for initial clock
+00000000000i[CMOS ] Setting initial clock to: Thu Jan  1 00:00:00 1970 (time0=0)
+00000000000i[DMA  ] channel 4 used by cascade
+00000000000i[DMA  ] channel 2 used by Floppy Drive
+00000000000p[XGUI ] >>PANIC<< bochs: cannot connect to X server 
+00000000000i[SYS  ] Last time is 0
+00000000000i[     ] restoring default signal behavior
+00000000000i[CTRL ] quit_sim called with exit code 1

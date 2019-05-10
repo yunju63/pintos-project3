@@ -14,6 +14,7 @@
 #ifdef USERPROG
 #include "userprog/process.h"
 #endif
+#include "vm/frame.h"
 
 /* Random value for struct thread's `magic' member.
    Used to detect stack overflow.  See the big comment at the top
@@ -27,7 +28,7 @@
 /* List of processes in THREAD_READY state, that is, processes
    that are ready to run but not actually running. */
 static struct list ready_list;
-
+static struct list all_list;
 /* Idle thread. */
 static struct thread *idle_thread;
 
@@ -91,6 +92,9 @@ thread_init (void)
 
   lock_init (&tid_lock);
   list_init (&ready_list);
+  list_init (&all_list);
+
+  init_frame_table();
 
   /* Set up a thread structure for the running thread. */
   initial_thread = running_thread ();
@@ -181,7 +185,14 @@ thread_create (const char *name, int priority,
   /* Initialize thread. */
   init_thread (t, name, priority);
   tid = t->tid = allocate_tid ();
-
+  
+  /* Push 'thread to be created' as child of 'thread doing the creation' */
+  struct child_elem *ce1 = malloc(sizeof(*ce1));
+  ce1->child = t;
+  ce1->tid = tid;
+  ce1->exit_status = -2;
+  list_push_back(&running_thread()->child_list, &ce1->e);
+  
   /* Stack frame for kernel_thread(). */
   kf = alloc_frame (t, sizeof *kf);
   kf->eip = NULL;
@@ -279,14 +290,13 @@ void
 thread_exit (void) 
 {
   ASSERT (!intr_context ());
-
 #ifdef USERPROG
   process_exit ();
 #endif
-
   /* Just set our status to dying and schedule another process.
      We will be destroyed during the call to schedule_tail(). */
   intr_disable ();
+  list_remove(&thread_current()->all_elem);
   thread_current ()->status = THREAD_DYING;
   schedule ();
   NOT_REACHED ();
@@ -354,7 +364,7 @@ thread_get_recent_cpu (void)
   /* Not yet implemented. */
   return 0;
 }
-
+
 /* Idle thread.  Executes when no other thread is ready to run.
 
    The idle thread is initially put on the ready list by
@@ -433,13 +443,24 @@ init_thread (struct thread *t, const char *name, int priority)
   ASSERT (t != NULL);
   ASSERT (PRI_MIN <= priority && priority <= PRI_MAX);
   ASSERT (name != NULL);
-
+  
   memset (t, 0, sizeof *t);
   t->status = THREAD_BLOCKED;
   strlcpy (t->name, name, sizeof t->name);
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->magic = THREAD_MAGIC;
+  
+  t->exit_status = -2;
+  t->fd_count = 2;
+  t->md_count = 0;
+  t->parent = running_thread();
+  t->waiting_tid = -1; 
+  list_init(&t->fd_list);
+  list_init(&t->md_list);
+  list_init(&t->child_list);
+  sema_init(&t->child_lock, 0);
+  list_push_back(&all_list, &t->all_elem);
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and
@@ -551,7 +572,27 @@ allocate_tid (void)
 
   return tid;
 }
-
+
 /* Offset of `stack' member within `struct thread'.
    Used by switch.S, which can't figure it out on its own. */
 uint32_t thread_stack_ofs = offsetof (struct thread, stack);
+
+struct thread* get_thread(tid_t tid)
+{
+  struct list_elem* elem;
+  struct thread* t1;
+  struct thread* t2;
+  enum intr_level old_level;
+
+  old_level = intr_disable();
+  t2 = NULL;
+  for(elem = list_begin(&all_list);elem != list_end(&all_list);elem = list_next(elem)){
+    t1 = list_entry(elem, struct thread, all_elem);
+    if(tid == t1->tid){
+      t2 = t1;
+      break;
+    }
+  }
+  intr_set_level(old_level);
+  return t2;
+}
